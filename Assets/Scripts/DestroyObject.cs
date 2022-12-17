@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ApagaObjeto : MonoBehaviour {
+public class DestroyObject : MonoBehaviour {
 
-	// Use this for initialization
 	void Start () {
 		Invoke("DestroyObjeto", 1.5f);
 	}
-	
-	// Update is called once per frame
+
 	void DestroyObjeto () {
 		Destroy(this.gameObject);
 	}

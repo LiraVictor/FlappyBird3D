@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114065584849081164}
   - component: {fileID: 54756241595517278}
   m_Layer: 0
-  m_Name: Set Canos
+  m_Name: PF_Obstacle_Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

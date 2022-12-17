@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114023138923879570}
   - component: {fileID: 54517015328909864}
   m_Layer: 0
-  m_Name: ObjetoNuvem
+  m_Name: PF_Scenery_Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

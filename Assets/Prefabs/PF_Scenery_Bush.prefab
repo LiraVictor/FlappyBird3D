@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114515727449073790}
   - component: {fileID: 54606174919457582}
   m_Layer: 0
-  m_Name: ObjetoArbusto
+  m_Name: PF_Scenery_Bush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

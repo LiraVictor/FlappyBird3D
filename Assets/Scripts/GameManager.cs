@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Principal : MonoBehaviour {
+public class GameManager : MonoBehaviour {
 
-	public GameObject cerca;
-    public GameObject arbusto;
-    public GameObject nuvem;
-    public GameObject canos;
-    public GameObject pedra;
+    [SerializeField] private GameObject cerca;
+    [SerializeField] private GameObject arbusto;
+    [SerializeField] private GameObject nuvem;
+    [SerializeField] private GameObject canos;
+    [SerializeField] private GameObject pedra;
 
-    public GameObject jogadorFelpudo;
-    public Text textoScore;
+    [SerializeField] private GameObject jogadorFelpudo;
+    [SerializeField] private Text textoScore;
+    [SerializeField] private GameObject particulas;
 
-    public GameObject particulas;
-
-    bool comecou;
-    bool acabou;
-    int pontuacao;
+    private bool comecou;
+    private bool acabou;
+    private int pontuacao;
 
     void Start ()
     {
@@ -27,7 +26,6 @@ public class Principal : MonoBehaviour {
         textoScore.text = "Toque para iniciar!";
     }
 
-    // Use this for initialization
     void Update () {
         if (Input.anyKeyDown)
         {
@@ -51,7 +49,6 @@ public class Principal : MonoBehaviour {
         jogadorFelpudo.transform.rotation = Quaternion.Euler(jogadorFelpudo.GetComponent<Rigidbody>().velocity.y * -3, 0, 0);
 	}
 	
-	// Update is called once per frame
 	void CriaCerca () {
 		Instantiate(cerca);
 	}
@@ -103,6 +100,6 @@ public class Principal : MonoBehaviour {
 
     void RecarregaCena()
     {
-        Application.LoadLevel("MinhaCena");
+        Application.LoadLevel("SCN_Game");
     }
 }

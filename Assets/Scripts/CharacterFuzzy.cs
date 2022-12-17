@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Felpudo : MonoBehaviour {
+public class CharacterFuzzy : MonoBehaviour {
 
-	public GameObject cameraPrincipal;
-	public AudioClip somBate;
-    public AudioClip somPonto;
-    public AudioClip somVoa;
+    [SerializeField] private GameObject cameraPrincipal;
+    [SerializeField] private AudioClip sfxHit;
+    [SerializeField] private AudioClip sfxScore;
+    [SerializeField] private AudioClip sfxFly;
 
-    // Use this for initialization
     void OnTriggerEnter (Collider objeto) {
 		if(objeto.gameObject.tag == "Finish")
 		{
@@ -18,22 +17,21 @@ public class Felpudo : MonoBehaviour {
             GetComponent<Rigidbody>().AddTorque(new Vector3(-100.0f, -100.0f, -100.0f));
 
 			cameraPrincipal.SendMessage("FimDeJogo");
-            GetComponent<AudioSource>().PlayOneShot(somBate);
+            GetComponent<AudioSource>().PlayOneShot(sfxHit);
         }
 	}
 	
-	// Update is called once per frame
 	void OnTriggerExit (Collider objeto) {
         if (objeto.gameObject.tag == "GameController")
         {
 			Destroy(objeto.gameObject);
             cameraPrincipal.SendMessage("MarcaPonto");
-            GetComponent<AudioSource>().PlayOneShot(somPonto);
+            GetComponent<AudioSource>().PlayOneShot(sfxScore);
         }
     }
 
     void SomVoa()
     {
-        GetComponent<AudioSource>().PlayOneShot(somVoa);
+        GetComponent<AudioSource>().PlayOneShot(sfxFly);
     }
 }
