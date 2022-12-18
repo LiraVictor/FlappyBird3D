@@ -1,105 +1,101 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    [SerializeField] private GameObject cerca;
-    [SerializeField] private GameObject arbusto;
-    [SerializeField] private GameObject nuvem;
-    [SerializeField] private GameObject canos;
-    [SerializeField] private GameObject pedra;
-
-    [SerializeField] private GameObject jogadorFelpudo;
+    [SerializeField] private GameObject fence;
+    [SerializeField] private GameObject bush;
+    [SerializeField] private GameObject cloud;
+    [SerializeField] private GameObject pipe;
+    [SerializeField] private GameObject stone;
+    [SerializeField] private GameObject characterFuzzy;
     [SerializeField] private Text textoScore;
     [SerializeField] private GameObject particulas;
-
-    private bool comecou;
-    private bool acabou;
-    private int pontuacao;
+    private bool started;
+    private bool finished;
+    private int score;
 
     void Start ()
     {
         Physics.gravity = new Vector3(0, -25.0f, 0);
         textoScore.fontSize = 30;
-        textoScore.text = "Toque para iniciar!";
+        textoScore.text = "Touch for started!";
     }
 
     void Update () {
         if (Input.anyKeyDown)
         {
-            if (!acabou)
+            if (!finished)
             {
-                if (!comecou)
+                if (!started)
                 {
-                    comecou = true;
-                    InvokeRepeating("CriaCerca", 1, 0.4f);
-                    InvokeRepeating("CriaObjetos", 1, 0.75f);
+                    started = true;
+                    InvokeRepeating("CreatesFences", 1, 0.4f);
+                    InvokeRepeating("CreatesObjects", 1, 0.75f);
 
-                    jogadorFelpudo.GetComponent<Rigidbody>().useGravity = true;
-                    jogadorFelpudo.GetComponent<Rigidbody>().isKinematic = false;
+                    characterFuzzy.GetComponent<Rigidbody>().useGravity = true;
+                    characterFuzzy.GetComponent<Rigidbody>().isKinematic = false;
 
-                    textoScore.text = pontuacao.ToString();
+                    textoScore.text = score.ToString();
                     textoScore.fontSize = 70;
                 }
-                VoaFelpudo();
+                FlyFelpudo();
             }
         }
-        jogadorFelpudo.transform.rotation = Quaternion.Euler(jogadorFelpudo.GetComponent<Rigidbody>().velocity.y * -3, 0, 0);
+        characterFuzzy.transform.rotation = Quaternion.Euler(characterFuzzy.GetComponent<Rigidbody>().velocity.y * -3, 0, 0);
 	}
 	
-	void CriaCerca () {
-		Instantiate(cerca);
+	void CreatesFences () {
+		Instantiate(fence);
 	}
 
-    void CriaObjetos ()
+    void CreatesObjects ()
     {
-        int sorteiaObjeto = Random.Range(1, 5);
-        float posicaoXrandom = Random.Range(-1.3f, 2.5f);
-        float posicaoYrandom = Random.Range(1.25f, 4.5f);
-        float rotacaoYrandom = Random.Range(0.0f, 360.0f);
+        int raffleObject = Random.Range(1, 5);
+        float positionXrandom = Random.Range(-1.3f, 2.5f);
+        float positionYrandom = Random.Range(1.25f, 4.5f);
+        float rotationYrandom = Random.Range(0.0f, 360.0f);
 
-        GameObject novoObjeto = new GameObject();
+        GameObject newObject = new GameObject();
 
-        switch (sorteiaObjeto)
+        switch (raffleObject)
         {
-            case 1: novoObjeto = Instantiate(arbusto); posicaoYrandom = novoObjeto.transform.position.y;  break;
-            case 2: novoObjeto = Instantiate(pedra); posicaoYrandom = novoObjeto.transform.position.y; break;
-            case 3: novoObjeto = Instantiate(nuvem); break;
-            case 4: novoObjeto = Instantiate(canos); posicaoYrandom = Random.Range(-2.0f, 0.1f); posicaoXrandom = novoObjeto.transform.position.x; break;
+            case 1: newObject = Instantiate(bush); positionYrandom = newObject.transform.position.y;  break;
+            case 2: newObject = Instantiate(stone); positionYrandom = newObject.transform.position.y; break;
+            case 3: newObject = Instantiate(cloud); break;
+            case 4: newObject = Instantiate(pipe); positionYrandom = Random.Range(-2.0f, 0.1f); positionXrandom = newObject.transform.position.x; break;
             default: break;
         }
 
-        novoObjeto.transform.position = new Vector3(posicaoXrandom, posicaoYrandom, novoObjeto.transform.position.z);
-        novoObjeto.transform.rotation = Quaternion.Euler(novoObjeto.transform.rotation.x, rotacaoYrandom, novoObjeto.transform.rotation.y);
+        newObject.transform.position = new Vector3(positionXrandom, positionYrandom, newObject.transform.position.z);
+        newObject.transform.rotation = Quaternion.Euler(newObject.transform.rotation.x, rotationYrandom, newObject.transform.rotation.y);
     }
 
-    void VoaFelpudo ()
+    void FlyFelpudo ()
     {
         GameObject novaParticula = Instantiate(particulas);
-        novaParticula.transform.position = jogadorFelpudo.transform.position;
+        novaParticula.transform.position = characterFuzzy.transform.position;
 
-        jogadorFelpudo.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        jogadorFelpudo.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 10.0f, 0.0f);
-        jogadorFelpudo.SendMessage("SomVoa");
+        characterFuzzy.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        characterFuzzy.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 10.0f, 0.0f);
+        characterFuzzy.SendMessage("SoundForFly");
     }
 
-    void MarcaPonto()
+    void MarkPoint()
     {
-        pontuacao++;
-        textoScore.text = pontuacao.ToString();
+        score++;
+        textoScore.text = score.ToString();
     }
-    void FimDeJogo()
+    void EndOfTheGame()
     {
-        acabou = true;
-        CancelInvoke("CriaCerca");
-        CancelInvoke("CriaObjetos");
-        Invoke("RecarregaCena", 1);
+        finished = true;
+        CancelInvoke("CreatesFences");
+        CancelInvoke("CreatesObjects");
+        Invoke("ReloadScene", 1);
     }
 
-    void RecarregaCena()
+    void ReloadScene()
     {
-        Application.LoadLevel("SCN_Game");
+        Application.LoadLevel("SCNGame");
     }
 }

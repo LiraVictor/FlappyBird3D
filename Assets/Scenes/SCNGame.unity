@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9324d4aa01113e2489b2ab32d759b785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialPiso: {fileID: 2100000, guid: 26c93f1b507e63a43917e18ca10b171e, type: 2}
+  materialFloor: {fileID: 2100000, guid: 26c93f1b507e63a43917e18ca10b171e, type: 2}
 --- !u!1001 &1043421994
 Prefab:
   m_ObjectHideFlags: 0
@@ -286,6 +286,11 @@ Prefab:
     - target: {fileID: 114415078069261104, guid: ac009e8ff367b2c4c81ef1ec6d8d9034,
         type: 2}
       propertyPath: cameraPrincipal
+      value: 
+      objectReference: {fileID: 1623313388}
+    - target: {fileID: 114415078069261104, guid: ac009e8ff367b2c4c81ef1ec6d8d9034,
+        type: 2}
+      propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1623313388}
     m_RemovedComponents: []
@@ -525,7 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9324d4aa01113e2489b2ab32d759b785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialPiso: {fileID: 2100000, guid: 26c93f1b507e63a43917e18ca10b171e, type: 2}
+  materialFloor: {fileID: 2100000, guid: 26c93f1b507e63a43917e18ca10b171e, type: 2}
 --- !u!1 &1623313388
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,12 +625,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed5a5058f82bce4eb8f607af07af829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cerca: {fileID: 1537506222976144, guid: c7e2ec455acc2384297d12985d51ae94, type: 2}
-  arbusto: {fileID: 1914359077940952, guid: 7e225c8127b761347993bd5bb234f7a6, type: 2}
-  nuvem: {fileID: 1910383405958974, guid: de4187f7eba5a364683e9a3df4e7e10d, type: 2}
-  canos: {fileID: 1180530128284366, guid: adc1192eb91cb7849b45edbcf9af9e95, type: 2}
-  pedra: {fileID: 1456552163803992, guid: f67dd6150b9a7344c914afb4bcc27cd9, type: 2}
-  jogadorFelpudo: {fileID: 1984637726}
+  fence: {fileID: 1537506222976144, guid: c7e2ec455acc2384297d12985d51ae94, type: 2}
+  bush: {fileID: 1914359077940952, guid: 7e225c8127b761347993bd5bb234f7a6, type: 2}
+  cloud: {fileID: 1910383405958974, guid: de4187f7eba5a364683e9a3df4e7e10d, type: 2}
+  pipe: {fileID: 1180530128284366, guid: adc1192eb91cb7849b45edbcf9af9e95, type: 2}
+  stone: {fileID: 1456552163803992, guid: f67dd6150b9a7344c914afb4bcc27cd9, type: 2}
+  characterFuzzy: {fileID: 1984637726}
   textoScore: {fileID: 1087475640}
   particulas: {fileID: 1216069787955896, guid: 4ebf6b30b91d83a4183f7b533d9e5a86, type: 2}
 --- !u!82 &1623313394
@@ -900,7 +905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9324d4aa01113e2489b2ab32d759b785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialPiso: {fileID: 2100000, guid: 26c93f1b507e63a43917e18ca10b171e, type: 2}
+  materialFloor: {fileID: 2100000, guid: 26c93f1b507e63a43917e18ca10b171e, type: 2}
 --- !u!1 &1947599985
 GameObject:
   m_ObjectHideFlags: 0
